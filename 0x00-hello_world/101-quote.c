@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <string.h>
 
 /**
  * main - print string to standard error
