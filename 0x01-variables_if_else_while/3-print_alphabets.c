@@ -13,7 +13,7 @@ int main(void)
 	char *alphabets = "abcdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ";
 	int x = 0;
 
-	for (; x < strlen(alphabets); x++)
+	for (; x < 56; x++)
 		putchar(alphabets[x]);
 	putchar('\n');
 	return (0);

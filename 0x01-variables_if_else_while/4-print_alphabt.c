@@ -13,7 +13,7 @@ int main(void)
 	char *alphabets = "abcdefghijklmnopqrstuvwxyz";
 	int x = 0;
 
-	for (; x < strlen(alphabets); x++)
+	for (; x < 26; x++)
 	{
 		if (alphabets[x] == 'e')
 			continue;

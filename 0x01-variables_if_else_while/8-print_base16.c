@@ -13,7 +13,7 @@ int main(void)
 	char *basehex = "0123456789abcdef";
 	int x = 0;
 
-	for (; x < strlen(basehex); x++)
+	for (; x < 16; x++)
 		putchar(basehex[x]);
 	putchar('\n');
 	return (0);
