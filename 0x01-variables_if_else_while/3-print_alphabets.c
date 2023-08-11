@@ -10,7 +10,7 @@
 
 int main(void)
 {
-	char *alphabets = "abcdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ";
+	char *alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	int x = 0;
 
 	for (; x < 56; x++)
