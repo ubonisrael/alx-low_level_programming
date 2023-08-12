@@ -16,16 +16,10 @@ int main(void)
 	{
 		for (y = x + 1; y <= 99; y++)
 		{
-			if (x < 10)
-				putchar('0');
-			else
-				putchar('0' + x / 10);
-			putchar('0' + x % 10);
+			putchar('0' + (x / 10));
+			putchar('0' + (x % 10));
 			putchar(' ');
-			if (y < 10)
-				putchar('0');
-			else
-				putchar('0' + y / 10);
+			putchar('0' + y / 10);
 			putchar('0' + y % 10);
 			if (x < 98 || y < 99)
 			{
@@ -34,5 +28,6 @@ int main(void)
 			}
 		}
 	}
+	putchar('\n');
 	return (0);
 }
