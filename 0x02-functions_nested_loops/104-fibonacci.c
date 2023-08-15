@@ -9,20 +9,20 @@
 
 int main(void)
 {
-	long int x;
-	long int y;
-	long int z;
+	unsigned long int x;
+	unsigned long int y;
+	unsigned long int z;
 	int count;
 
 	x = 1;
 	y = 2;
 	count = 2;
-	printf("%ld, %ld, ", x, y);
-	while (count < 97)
+	printf("%lu, %lu, ", x, y);
+	while (count < 98)
 	{
 		z = x + y;
-		printf("%ld", z);
-		if (count < 96)
+		printf("%lu", z);
+		if (count < 97)
 			printf(", ");
 		x = y;
 		y = z;
