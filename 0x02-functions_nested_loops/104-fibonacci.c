@@ -18,11 +18,11 @@ int main(void)
 	y = 2;
 	count = 2;
 	printf("%ld, %ld, ", x, y);
-	while (count < 99)
+	while (count < 98)
 	{
 		z = x + y;
 		printf("%ld", z);
-		if (count < 98)
+		if (count < 97)
 			printf(", ");
 		x = y;
 		y = z;
