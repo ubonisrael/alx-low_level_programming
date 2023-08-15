@@ -1,12 +1,19 @@
 #include "main.h"
 #include <stdio.h>
+#include <limits.h>
 
 int main(void)
 {
-     print_to_98(0);
-    print_to_98(98);
-    print_to_98(111);
-    print_to_98(81);
-    print_to_98(-10);
+       int r;
+
+    print_last_digit(98);
+    print_last_digit(0);
+    r = print_last_digit(-1024);
+    _putchar('0' + r);
+    _putchar('\n');
+    printf("%d\n", INT_MIN);
+    printf("%d\n", INT_MIN % 10);
+    print_last_digit(INT_MIN);
+    _putchar('\n');
     return (0);
 }
