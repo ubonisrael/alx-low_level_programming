@@ -6,7 +6,7 @@
  * main - prints numbers from 1-100,replacing multiples of 3 with fizz, 5 with
  * buzz, multiples of 2 and 5 with fizzbuzz
  *
- * Return: void
+ * Return: 0
  */
 
 int main(void)
@@ -21,9 +21,12 @@ int main(void)
 			printf("Fizz");
 		else if (x % 5 == 0)
 			printf("Buzz");
+		else
+			printf("%d", x);
 
 		if (x < 100)
-			_putchar(' ');
+			putchar(' ');
 	}
-	_putchar('\n');
+	putchar('\n');
+	return (0);
 }
