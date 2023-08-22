@@ -18,7 +18,7 @@ VWXYZ1234567890!@#$%^&*()";
 	int index;
 	int passwordLength = 12;
 
-	srand = ((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL));
 
 	for (x = 0; x < passwordLength; x++)
 	{
