@@ -19,8 +19,7 @@ void print_diagsums(int *a, int size)
 		if (x % (size - 1) == 0)
 			diagonal2 += a[x];
 	}
-	diagonal1 -= a[0];
-	diagonal2 -= a[x - 1];
+	diagonal2 = diagonal2 -a[0] -  a[x - 1];
 
 	printf("%d, %d\n", diagonal1, diagonal2);
 }
