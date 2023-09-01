@@ -13,7 +13,7 @@ int isNumber(char x[])
 
 	if (x[i] == '-')
 		i++;
-	for(; x[i] != 0; x++)
+	for (; x[i] != 0; x++)
 	{
 		if (x[i] < 48 || x[i] > 57)
 			return (0);
