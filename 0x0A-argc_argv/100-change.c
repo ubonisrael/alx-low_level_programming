@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
 	}
 
 	balance = atoi(argv[1]);
-	if (balance < 0)
-		printf("%d\n", 0);
 	while (balance > 0)
 	{
 		if (balance >= coins[x])
