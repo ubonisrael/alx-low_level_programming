@@ -1,0 +1,69 @@
+#include "main.h"
+
+/**
+ * strtow - splits a string into words
+ * @str: string
+ * Return: pointer to array of strings
+ */
+
+char **strtow(char *str)
+{
+	int x, y, z, temp, total_length, string_length;
+	char **s;
+
+	x = 0;
+	total_length = strlen(str);
+	if (str == NULL || total_length < 1)
+		return (NULL);
+	s = (char **)malloc(sizeof(char *) * total_length);
+	for (z = 0; z < total_length; z++)
+	{
+		if (!(str[z] > 32 && str[x] < 125))
+			continue;
+		else
+		{
+			if (str[z - 1] == 32)
+			{
+				y = 0;
+				temp = z;
+				string_length = 0;
+				while (str[temp] && str[temp] != 32)
+				{
+					string_length++;
+					temp++;
+				}
+				s[x] = (char *)malloc(sizeof(char) * string_length);
+				if (s[x] == NULL)
+				{
+					while (x >= 0)
+					{
+						free(s[x]);
+						x--;
+					}
+					free(s);
+					return (NULL);
+				}			}
+			s[x][y] = str[z];
+			y++;
+			if (y == string_length)
+			{
+				s[x][y] = '\0';
+				x++;
+			}
+		}
+	}
+	x++;
+	s[x] = (char *)malloc(sizeof(char));
+	if (s[x] == NULL)
+	{
+		while (x >= 0)
+		{
+			free(s[x]);
+			x--;
+		}
+		free(s);
+		return (NULL);
+	}
+	s[x] = NULL;
+	return (s);
+}
