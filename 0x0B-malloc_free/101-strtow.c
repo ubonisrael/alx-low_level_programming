@@ -45,25 +45,25 @@ char **strtow(char *str)
 			continue;
 		if (str[z - 1] == 32 || z == 0)
 		{
-		       	y = 0;
-	       		temp = z;
-       			s_len = 0;
-	       		while (str[temp] && str[temp] != 32)
-       			{
-			       	s_len++;
-		       		temp++;
-	       		}
-		       	temp = alloc_mem(s, x, s_len);
-	       		if (temp == 0)
-       				return (NULL);
-       		}
-       		s[x][y] = str[z];
-	       	y++;
-       		if (y == s_len)
-	       	{
-		       	s[x][y] = '\0';
-	       		x++;
-       		}
+			y = 0;
+			temp = z;
+			s_len = 0;
+			while (str[temp] && str[temp] != 32)
+			{
+				s_len++;
+				temp++;
+			}
+			temp = alloc_mem(s, x, s_len);
+			if (temp == 0)
+				return (NULL);
+		}
+		s[x][y] = str[z];
+		y++;
+		if (y == s_len)
+		{
+			s[x][y] = '\0';
+			x++;
+		}
 	}
 	if (x == 0)
 		return (NULL);
