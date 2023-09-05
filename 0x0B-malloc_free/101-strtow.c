@@ -69,13 +69,5 @@ char **strtow(char *str)
 		return (NULL);
 	x++;
 	s[x] = NULL;
-	for (x = 0; s[x] != NULL; x++)
-	{
-		for (y = 0; s[x][y] != '\0')
-			t_len++;
-		t_len++;
-	}
-	if (realloc(s, sizeof(char *) * (t_len + 1)) == NULL)
-		return (NULL);
 	return (s);
 }
