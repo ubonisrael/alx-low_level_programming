@@ -58,7 +58,7 @@ void print_msg(char *str)
 
 /**
  * print_number - prints numbers
- * @number: number
+ * @n: number
  * Return: void
  */
 
@@ -83,7 +83,7 @@ void print_number(unsigned long int n)
 /**
  * main - multiplies two positive numbers
  * @ac: number of command line arguments
- * @ag: array of command line arguments
+ * @av: array of command line arguments
  * Return: 0
  */
 
