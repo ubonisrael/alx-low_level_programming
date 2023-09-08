@@ -12,7 +12,7 @@ void _memset(char *ptr, int b, unsigned int size)
 {
 	unsigned int x;
 
-	for(x = 0; x < size; x++)
+	for (x = 0; x < size; x++)
 		ptr[x] = b;
 }
 
