@@ -1,6 +1,26 @@
 #include "dog.h"
 
 /**
+ * _strcpy - copies a string from a src to destination
+ * @dest: pointer to destination
+ * @src: pointer to src
+ * Return: pointer to destination
+ */
+
+char *_strcpy(char *dest, char *src)
+{
+	unsigned int x;
+
+	x = 0;
+	while (src[x])
+	{
+		dest[x] = src[x];
+		x++;
+	}
+	return (dest);
+}
+
+/**
  * new_dog - creates a new dog
  * @name: pointer to name of dog
  * @age: age
@@ -29,9 +49,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
-	dog->name = name;
+	_strcpy(dog->name, name);
 	dog->age = age;
-	dog->owner = owner;
+	_strcpy(dog->owner, owner);
 
 	return (dog);
 }
