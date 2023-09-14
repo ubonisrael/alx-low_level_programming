@@ -44,11 +44,11 @@ void print_string(va_list args)
 	char* s = va_arg(args, char *);
 
 	if (s == NULL)
-		printf("(nil)");
-	else
 	{
-		printf("%s", s);
+		printf("(nil)");
+		return;
 	}
+	printf("%s", s);
 }
 
 /**
@@ -61,6 +61,7 @@ void print_all(const char * const format, ...)
 {
 	unsigned int x;
 	int y;
+	char *sep = "";
 	format_list list[] = {
 		{99, print_char},
 		{105, print_int},
@@ -78,9 +79,9 @@ void print_all(const char * const format, ...)
 		{
 			if (format[x] == list[y].c)
 			{
+				printf("%s", sep);
 				list[y].func(args);
-				if (format[x + 1])
-					printf(", ");
+				sep = ", ";
 				break;
 			}
 			y++;
