@@ -35,13 +35,13 @@ void print_float(va_list args)
 
 /**
  * print_string - prints a string
- * @s: string
+ * @args: string
  * Return: void
  */
 
 void print_string(va_list args)
 {
-	char* s = va_arg(args, char *);
+	char *s = va_arg(args, char *);
 
 	if (s == NULL)
 	{
@@ -68,8 +68,8 @@ void print_all(const char * const format, ...)
 		{102, print_float},
 		{115, print_string},
 	};
-
 	va_list args;
+
 	va_start(args, format);
 	x = 0;
 	while (format && format[x])
