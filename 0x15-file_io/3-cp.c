@@ -8,7 +8,7 @@
 
 void err_read(const char *fn)
 {
-	dprintf(2, "Error: Can't read from file %s\n", fn);
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", fn);
 	exit(98);
 }
 
@@ -20,7 +20,7 @@ void err_read(const char *fn)
 
 void err_write(const char *fn)
 {
-	dprintf(2, "Error: Can't write to file %s\n", fn);
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", fn);
 	exit(99);
 }
 
@@ -32,7 +32,7 @@ void err_write(const char *fn)
 
 void err_close(int fd)
 {
-	dprintf(2, "Error: Can't close fd %d\n", fd);
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 	exit(100);
 }
 
@@ -51,12 +51,12 @@ int main(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		write(STDERR_FILENO, usage, strlen(usage));
+		dprintf(STDERR_FILENO, "%s", usage);
 		exit(97);
 	}
 	fd1 = open(av[1], O_RDONLY);
 	umask(0000);
-	fd2 = open(av[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	fd2 = open(av[2], O_CREAT | O_TRUNC | O_WRONLY | O_APPEND, 0664);
 	if (fd1 == -1)
 		err_read(av[1]);
 	if (fd2 == -1)
