@@ -73,6 +73,5 @@ int main(int ac, char *av[])
 		err_close(fd1);
 	if (close(fd2) == -1)
 		err_close(fd2);
-	free(buf);
 	return (0);
 }
