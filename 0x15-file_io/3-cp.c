@@ -56,7 +56,7 @@ int main(int ac, char *av[])
 	}
 	fd1 = open(av[1], O_RDONLY);
 	umask(0000);
-	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	fd2 = open(av[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (fd1 == -1)
 		err_read(av[1]);
 	if (fd2 == -1)
@@ -64,18 +64,18 @@ int main(int ac, char *av[])
 	buf = malloc(sizeof(char) * 1024);
 	if (buf == NULL)
 		err_write(av[2]);
-	do {
-		sz = read(fd1, buf, 1024);
+	while ((sz = read(fd1, buf, 1024)) != 0)
+	{
 		if (sz == -1)
 			err_read(av[1]);
 		wr = write(fd2, buf, sz);
 		if (wr == -1)
 			err_write(av[2]);
-	} while (sz != 0);
+	}
 	if (close(fd1) == -1)
 		err_close(fd1);
 	if (close(fd2) == -1)
 		err_close(fd2);
 	free(buf);
-	return (1);
+	return (0);
 }
