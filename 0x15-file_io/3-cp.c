@@ -45,7 +45,7 @@ void err_close(int fd)
 
 int main(int ac, char *av[])
 {
-	char *buf;
+	char buf[1024];
 	char *usage = "Usage: cp file_from file_to\n";
 	int fd1, fd2, wr, sz;
 
@@ -60,9 +60,6 @@ int main(int ac, char *av[])
 	if (fd1 == -1)
 		err_read(av[1]);
 	if (fd2 == -1)
-		err_write(av[2]);
-	buf = malloc(sizeof(char) * 1024);
-	if (buf == NULL)
 		err_write(av[2]);
 	while ((sz = read(fd1, buf, 1024)) != 0)
 	{
