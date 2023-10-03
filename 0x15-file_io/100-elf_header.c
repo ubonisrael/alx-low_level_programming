@@ -11,14 +11,14 @@ void print_entry_address(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("  Entry point address:               ");
 
-	if (e_ident[5] == ELFDATA2MSB)
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
 		e_entry = ((e_entry << 8) & 0xFF00FF00) |
 			  ((e_entry >> 8) & 0xFF00FF);
 		e_entry = (e_entry << 16) | (e_entry >> 16);
 	}
 
-	if (e_ident[4] == ELFCLASS32)
+	if (e_ident[EI_CLASS] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)e_entry);
 	else
 		printf("%#lx\n", e_entry);
@@ -36,30 +36,22 @@ void print_type(unsigned int e_type)
 	switch (e_type)
 	{
 	case ET_NONE:
-	{
-		printf("UNKNOWN\n");
+		printf("NONE (Unknown type)\n");
 		break;
-	}
 	case ET_EXEC:
-	{
 		printf("EXEC (Executable file)\n");
 		break;
-	}
 	case ET_REL:
-	{
-		printf("REL (Rel file)\n");
+		printf("REL (Relocatable file)\n");
 		break;
-	}
 	case ET_DYN:
-	{
 		printf("DYN (Shared object file)\n");
 		break;
-	}
 	case ET_CORE:
-	{
 		printf("CORE (Core file)\n");
 		break;
-	}
+	default:
+		printf("<unknown: %x\n", e_type);
 	}
 }
 
@@ -71,7 +63,7 @@ void print_type(unsigned int e_type)
 
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI:\t\t\t\t     %d\n", e_ident[8]);
+	printf("  ABI:\t\t\t\t     %d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -83,7 +75,7 @@ void print_abi(unsigned char *e_ident)
 void print_osabi(unsigned char *e_ident)
 {
 	printf("  OS/ABI:\t\t\t     ");
-	switch (e_ident[7])
+	switch (e_ident[EI_OSABI])
 	{
 	case ELFOSABI_SYSV:
 		printf("UNIX - System V\n");
@@ -110,14 +102,13 @@ void print_osabi(unsigned char *e_ident)
 		printf("UNIX - TRU64\n");
 		break;
 	case ELFOSABI_ARM:
-		printf("UNIX - ARM architecture\n");
+		printf("UNIX - ARM\n");
 		break;
 	case ELFOSABI_STANDALONE:
 		printf("UNIX - Standalone App\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", e_ident[7]);
-		break;
+		printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
 }
 
@@ -133,15 +124,10 @@ void print_version(unsigned short int e_version)
 	switch (e_version)
 	{
 	case EV_CURRENT:
-	{
 		printf("%d (current)\n", e_version);
 		break;
-	}
 	default:
-	{
 		printf("%i\n", e_version);
-		break;
-	}
 	}
 }
 
@@ -154,28 +140,19 @@ void print_version(unsigned short int e_version)
 void print_data(unsigned char *e_ident)
 {
 	printf("  Data:\t\t\t\t     ");
-	switch (e_ident[5])
+	switch (e_ident[EI_DATA])
 	{
 	case ELFDATA2LSB:
-	{
 		printf("2's complement, little endian\n");
 		break;
-	}
 	case ELFDATA2MSB:
-	{
 		printf("2's complement, big endian\n");
 		break;
-	}
 	case ELFDATANONE:
-	{
 		printf("none\n");
 		break;
-	}
 	default:
-	{
-		printf("unknown: %x\n", e_ident[5]);
-		break;
-	}
+		printf("unknown: %x\n", e_ident[EI_DATA]);
 	}
 }
 
@@ -188,28 +165,19 @@ void print_data(unsigned char *e_ident)
 void print_class(unsigned char *e_ident)
 {
 	printf("  Class:\t\t\t     ");
-	switch (e_ident[4])
+	switch (e_ident[EI_CLASS])
 	{
 	case ELFCLASS32:
-	{
 		printf("ELF32\n");
 		break;
-	}
 	case ELFCLASS64:
-	{
 		printf("ELF64\n");
 		break;
-	}
 	case ELFCLASSNONE:
-	{
 		printf("none\n");
 		break;
-	}
 	default:
-	{
-		printf("unkown: %x\n", e_ident[4]);
-		break;
-	}
+		printf("unkown: %x\n", e_ident[EI_CLASS]);
 	}
 }
 
@@ -248,7 +216,7 @@ void is_file_elf(const char *fn, unsigned char *e_ident)
 	    e_ident[2] == 'L' &&
 	     e_ident[3] == 'F'))
 	{
-		dprintf(STDERR_FILENO, "%s is not an elf file\n", fn);
+		dprintf(STDERR_FILENO, "Error:%s is not an elf file\n", fn);
 		exit(98);
 	}
 }
@@ -260,7 +228,7 @@ void is_file_elf(const char *fn, unsigned char *e_ident)
 
 void err_usage(void)
 {
-	char *usage = "Error, usage: ./elf_header elf_file\n";
+	char *usage = "Usage: ./elf_header elf_file\n";
 
 	dprintf(STDERR_FILENO, "%s", usage);
 	exit(98);
