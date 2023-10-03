@@ -35,7 +35,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
-	printf("  Type:\t\t\t\t     ");
+	printf("  Type:                              ");
 	switch (e_type)
 	{
 	case ET_NONE:
@@ -66,7 +66,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI:\t\t\t\t     %d\n", e_ident[EI_ABIVERSION]);
+	printf("  ABI:                               %d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -77,7 +77,7 @@ void print_abi(unsigned char *e_ident)
 
 void print_osabi(unsigned char *e_ident)
 {
-	printf("  OS/ABI:\t\t\t     ");
+	printf("  OS/ABI:                            ");
 	switch (e_ident[EI_OSABI])
 	{
 	case ELFOSABI_SYSV:
@@ -123,7 +123,7 @@ void print_osabi(unsigned char *e_ident)
 
 void print_version(unsigned short int e_version)
 {
-	printf("  Version:\t\t\t     ");
+	printf("  Version:                           ");
 	switch (e_version)
 	{
 	case EV_CURRENT:
@@ -142,7 +142,7 @@ void print_version(unsigned short int e_version)
 
 void print_data(unsigned char *e_ident)
 {
-	printf("  Data:\t\t\t\t     ");
+	printf("  Data:                              ");
 	switch (e_ident[EI_DATA])
 	{
 	case ELFDATA2LSB:
@@ -167,7 +167,7 @@ void print_data(unsigned char *e_ident)
 
 void print_class(unsigned char *e_ident)
 {
-	printf("  Class:\t\t\t     ");
+	printf("  Class:                             ");
 	switch (e_ident[EI_CLASS])
 	{
 	case ELFCLASS32:
