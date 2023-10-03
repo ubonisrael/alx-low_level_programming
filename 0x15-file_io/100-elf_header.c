@@ -27,11 +27,14 @@ void print_entry_address(unsigned long int e_entry, unsigned char *e_ident)
 /**
  * print_type - prints the object file type
  * @e_type: array of bytes specifying how to interpret file
+ * @e_ident: array of bytes specifying how to interpret file
  * Return: void
  */
 
-void print_type(unsigned int e_type)
+void print_type(unsigned int e_type, unsigned char *e_ident)
 {
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_type >>= 8;
 	printf("  Type:\t\t\t\t     ");
 	switch (e_type)
 	{
@@ -301,7 +304,7 @@ int main(int ac, char *av[])
 	print_version(header->e_version);
 	print_osabi(header->e_ident);
 	print_abi(header->e_ident);
-	print_type(header->e_type);
+	print_type(header->e_type, header->e_ident);
 	print_entry_address(header->e_entry, header->e_ident);
 	close(fd);
 	free(header);
