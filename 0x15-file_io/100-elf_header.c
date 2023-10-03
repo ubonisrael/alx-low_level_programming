@@ -86,60 +86,38 @@ void print_osabi(unsigned char *e_ident)
 	switch (e_ident[7])
 	{
 	case ELFOSABI_SYSV:
-	{
 		printf("UNIX - System V\n");
 		break;
-	}
 	case ELFOSABI_HPUX:
-	{
 		printf("UNIX - HP-UX\n");
 		break;
-	}
 	case ELFOSABI_NETBSD:
-	{
 		printf("UNIX - NetBSD\n");
 		break;
-	}
 	case ELFOSABI_LINUX:
-	{
 		printf("UNIX - Linux\n");
 		break;
-	}
 	case ELFOSABI_SOLARIS:
-	{
 		printf("UNIX - Solaris\n");
 		break;
-	}
 	case ELFOSABI_IRIX:
-	{
 		printf("UNIX - IRIX\n");
 		break;
-	}
 	case ELFOSABI_FREEBSD:
-	{
 		printf("UNIX - FreeBSD\n");
 		break;
-	}
 	case ELFOSABI_TRU64:
-	{
 		printf("UNIX - TRU64\n");
 		break;
-	}
 	case ELFOSABI_ARM:
-	{
 		printf("UNIX - ARM architecture\n");
 		break;
-	}
 	case ELFOSABI_STANDALONE:
-	{
-		printf("UNIX - Stand-alone (embedded)\n");
+		printf("UNIX - Standalone App\n");
 		break;
-	}
 	default:
-	{
-		printf("<unknown: 53>\n");
+		printf("<unknown: %x>\n", e_ident[7]);
 		break;
-	}
 	}
 }
 
@@ -156,12 +134,12 @@ void print_version(unsigned short int e_version)
 	{
 	case EV_CURRENT:
 	{
-		printf("1 (current)\n");
+		printf("%d (current)\n", e_version);
 		break;
 	}
 	default:
 	{
-		printf("Invalid\n");
+		printf("%i\n", e_version);
 		break;
 	}
 	}
@@ -188,9 +166,14 @@ void print_data(unsigned char *e_ident)
 		printf("2's complement, big endian\n");
 		break;
 	}
+	case ELFDATANONE:
+	{
+		printf("none\n");
+		break;
+	}
 	default:
 	{
-		printf("Unknown data format\n");
+		printf("unknown: %x\n", e_ident[5]);
 		break;
 	}
 	}
@@ -217,9 +200,14 @@ void print_class(unsigned char *e_ident)
 		printf("ELF64\n");
 		break;
 	}
+	case ELFCLASSNONE:
+	{
+		printf("none\n");
+		break;
+	}
 	default:
 	{
-		printf("Invalid Class\n");
+		printf("unkown: %x\n", e_ident[4]);
 		break;
 	}
 	}
