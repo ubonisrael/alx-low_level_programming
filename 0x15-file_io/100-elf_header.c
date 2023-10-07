@@ -66,7 +66,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI:                               %d\n", e_ident[EI_ABIVERSION]);
+	printf("  ABI Version:                       %d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
