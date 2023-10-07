@@ -117,21 +117,17 @@ void print_osabi(unsigned char *e_ident)
 
 /**
  * print_version - prints the version number of the ELF specification
- * @e_version: identifies the file version
+ * @e_ident: array of bytes specifying how to interpret file
  * Return: void
  */
 
-void print_version(unsigned short int e_version)
+void print_version(unsigned char *e_ident)
 {
 	printf("  Version:                           ");
-	switch (e_version)
-	{
-	case EV_CURRENT:
-		printf("%d (current)\n", e_version);
-		break;
-	default:
-		printf("%i\n", e_version);
-	}
+	if (e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%d (current)\n", e_ident[EI_VERSION]);
+	else
+		printf("%i\n", e_ident[EI_VERSION]);
 }
 
 /**
@@ -301,7 +297,7 @@ int main(int ac, char *av[])
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
 	print_data(header->e_ident);
-	print_version(header->e_version);
+	print_version(header->e_ident);
 	print_osabi(header->e_ident);
 	print_abi(header->e_ident);
 	print_type(header->e_type, header->e_ident);
