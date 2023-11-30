@@ -11,8 +11,6 @@ void hash_table_print(const hash_table_t *ht)
 	int count = 0;
 	unsigned long int x = 0;
 
-	if (ht == NULL)
-		return;
 	printf("{");
 	for (; x < ht->size; x++)
 	{
@@ -20,7 +18,7 @@ void hash_table_print(const hash_table_t *ht)
 		{
 			if (count == 1)
 				printf(", ");
-			printf("\'%s\': \'%s\'",
+			printf("\'%s\':\'%s\'",
 			       ht->array[x]->key, ht->array[x]->value);
 			count = 1;
 		}
