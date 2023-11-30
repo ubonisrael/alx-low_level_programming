@@ -64,9 +64,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *node;
 	unsigned long int index;
 
-	if (key == NULL || strlen(key) == 0)
+	if (ht == NULL || key == NULL || strlen(key) == 0 || !value)
 		return (0);
-	index = key_index(key, ht->size);
+	index = key_index((unsigned char *)key, ht->size);
 	node = add_node(&(ht->array[index]), key, value);
 	if (node == NULL)
 		return (0);
