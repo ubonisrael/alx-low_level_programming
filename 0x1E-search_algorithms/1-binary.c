@@ -36,16 +36,15 @@ int binary_search_util(int *array, int start, int end, int value)
 	if (array == NULL)
 		return (-1);
 	print_arr(array, start, end);
-	if (array[mid] == value)
-		return (mid);
-	else if (mid >= end)
-		return (-1);
-	else if (array[mid] > value && mid)
-		return (binary_search_util(array, 0, mid - 1, value));
-	else if (array[mid] < value && mid)
+	if (start < end)
+	{
+		if (array[mid] == value)
+			return (mid);
+		if (array[mid] > value)
+			return (binary_search_util(array, 0, mid - 1, value));
 		return (binary_search_util(array, mid + 1, end, value));
-	else
-		return (-1);
+	}
+	return (-1);
 }
 
 /**
