@@ -56,7 +56,7 @@ int binary_search_util(int *array, int start, int end, int value)
 		if (array[mid] == value)
 			return (mid);
 		if (array[mid] > value)
-			return (binary_search_util(array, 0, mid - 1, value));
+			return (binary_search_util(array, start, mid - 1, value));
 		return (binary_search_util(array, mid + 1, end, value));
 	}
 	return (-1);
