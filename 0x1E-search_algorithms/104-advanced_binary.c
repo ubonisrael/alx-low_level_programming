@@ -36,7 +36,7 @@ int advanced_binary_util(int *array, int start, int end, int value)
 		return (-1);
 	if (end >= start)
 	{
-	  print_arr(array, start, end);
+		print_arr(array, start, end);
 		mid = start + (end - start) / 2;
 		if ((mid == 0 || value > array[mid - 1]) && array[mid] == value)
 			return (mid);
