@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.sql": "sql",
+        "search_algos.h": "c"
+    }
+}
