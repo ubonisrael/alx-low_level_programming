@@ -21,7 +21,6 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	jump_value = (int)sqrt(size);
 	current = i = j = list;
 	current = jump_util(list, jump_value, &j);
-	printf("Value checked at index [%ld] = [%d]\n", current->index, current->n);
 	while (current != NULL)
 	{
 		printf("Value checked at index [%ld] = [%d]\n", current->index, current->n);
