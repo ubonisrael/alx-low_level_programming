@@ -17,6 +17,8 @@ int exponential_search(int *array, size_t size, int value)
 {
 	int i, min, max;
 
+	if (array == NULL)
+		return (-1);
 	if (array[0] == value)
 		return (0);
 
@@ -50,9 +52,9 @@ int binary_search_util(int *array, int start, int end, int value)
 
 	if (array == NULL)
 		return (-1);
-	print_arr(array, start, end);
-	if (start < end)
+	if (start <= end)
 	{
+		print_arr(array, start, end);
 		if (array[mid] == value)
 			return (mid);
 		if (array[mid] > value)
